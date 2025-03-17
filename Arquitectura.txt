@@ -1,0 +1,18 @@
+laboratorio_componentes/
+├── data/
+│   ├── reactivos.json
+│   ├── experimentos.json
+├── core/                    # Lógica del negocio
+│   ├── reactivo.py
+│   ├── experimento.py
+│   ├── resultado.py
+├── cli/                     # Interfaz de usuario CLI
+│   ├── main.py
+│   ├── menu.py
+├── services/                # Módulos de servicio
+│   ├── gestion_reactivos.py
+│   ├── gestion_experimentos.py
+│   ├── gestion_resultados.py
+├── tests/
+├── config.py                # Configuración general
+├── README.md

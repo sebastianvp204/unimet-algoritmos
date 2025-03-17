@@ -1,0 +1,105 @@
+laboratorio_quimico/
+│── data/                   # Archivos JSON con los datos
+│   ├── reactivos.json
+│   ├── recetas.json
+│   ├── experimentos.json
+│
+│── models/                 # Definición de clases principales
+│   ├── reactivo.py
+│   ├── receta.py
+│   ├── experimento.py
+│
+│── gestores/               # Clases para la gestión de datos
+│   ├── gestor_reactivos.py
+│   ├── gestor_recetas.py
+│   ├── gestor_experimentos.py
+│   ├── gestor_resultados.py
+│   ├── gestor_estadisticas.py
+│
+│── utils/                  # Funciones auxiliares
+│   ├── manejador_json.py
+│
+│── main.py                 # Punto de entrada del programa
+│── README.md               # Documentación del proyecto
+│── requirements.txt         # Dependencias del proyecto
+
+
+
+
+
+codigo mermaid:
+
+classDiagram
+    class Reactivo {
+        +int id
+        +str nombre
+        +str descripcion
+        +float costo
+        +str categoria
+        +int inventario_disponible
+        +str unidad_medida
+        +str fecha_caducidad
+        +int minimo_sugerido
+        +dict conversiones_posibles
+        +convertir_unidad(unidad_destino: str) float
+    }
+
+    class Receta {
+        +int id
+        +str nombre
+        +str objetivo
+        +list reactivos_utilizados
+        +list procedimiento
+        +list valores_a_medir
+        +validar_disponibilidad(reactivos: list) bool
+    }
+
+    class Experimento {
+        +int id
+        +Receta receta
+        +list responsables
+        +str fecha
+        +float costo_asociado
+        +str resultado
+        +ejecutar_experimento(reactivos: list) str
+    }
+
+    class GestorReactivos {
+        +list reactivos
+        +cargar_reactivos(archivo: str)
+        +guardar_reactivos(archivo: str)
+    }
+
+    class GestorRecetas {
+        +list recetas
+        +cargar_recetas(archivo: str)
+        +guardar_recetas(archivo: str)
+    }
+
+    class GestorExperimentos {
+        +list experimentos
+        +registrar_experimento(exp: Experimento)
+        +listar_experimentos() list
+    }
+
+    class GestorResultados {
+        +evaluar_resultados(exp: Experimento) bool
+    }
+
+    class GestorEstadisticas {
+        +generar_reporte(experimentos: list) dict
+        +graficar_estadisticas()
+    }
+
+    class InterfazConsola {
+        +mostrar_menu()
+    }
+
+    GestorReactivos --> Reactivo
+    GestorRecetas --> Receta
+    GestorExperimentos --> Experimento
+    GestorResultados --> Experimento
+    GestorEstadisticas --> GestorResultados
+    InterfazConsola --> GestorReactivos
+    InterfazConsola --> GestorRecetas
+    InterfazConsola --> GestorExperimentos
